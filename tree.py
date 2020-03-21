@@ -1,4 +1,4 @@
-from anytree import Node, RenderTree, PreOrderIter
+from anytree import Node, PreOrderIter
 
 class Tree_methods:
     def __init__(self, tree):
@@ -32,3 +32,5 @@ def init_example_tree():
      ]),
      ])
     return Node(name='root', value=5, children=[left_sub_tree, right_sub_tree])
+
+root = init_example_tree()

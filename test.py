@@ -1,9 +1,8 @@
 from tree import Tree_methods
-from tree import init_example_tree
-from anytree import AnyNode, RenderTree, PreOrderIter
+from tree import root
 import pytest
 
-root = init_example_tree()
+
 class TestSum:
     def test_one(self,):
         assert Tree_methods(root).sum() == 38
@@ -11,7 +10,6 @@ class TestSum:
         assert Tree_methods(root.children[0]).sum() == 10
     def test_three(self):
         assert Tree_methods(root.children[1].children[0]).sum() == 1
-
 class TestAverage:
     def test_one(self):
         assert Tree_methods(root).average() == 3.8
