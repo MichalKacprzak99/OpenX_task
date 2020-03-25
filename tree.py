@@ -1,23 +1,49 @@
+from statistics import median, mean
 from anytree import Node, PreOrderIter
 
-class Tree_methods:
-    def __init__(self, tree):
-        self.tree = tree
-        self.list_of_nodes_val = []
-        for node in PreOrderIter(self.tree):
-            self.list_of_nodes_val.append(node.value)
-        self.list_of_nodes_val.sort()
+
+class NodeMethods:
+    """
+    This is the class used to analyze the subtree of the node
+    
+    Attributes:
+        node (object of anytree.Node class): Lhe node in tree
+        nodes_value (list) : List of values ​​for all nodes in the subtree
+    Methods:
+        sum: return sum of values in subtree
+        average: return average of values in subtree
+        median: return median of values in subtree
+    """
+
+    def __init__(self, node):
+        """
+        The constructor for NodeMethods class.
+        
+        Parameters:
+            node (object of anytree.Node class): The node in tree
+        """
+
+        self.node = node
+        self.nodes_value = []
+        for node in PreOrderIter(self.node):
+            self.nodes_value.append(node.value)
+
     def sum(self):
-        return sum(self.list_of_nodes_val)
+        return sum(self.nodes_value)
+
     def average(self):
-        return sum(self.list_of_nodes_val)/len(self.list_of_nodes_val)
-    def mediana(self):
-        self.lenght = len(self.list_of_nodes_val)
-        if self.lenght%2 == 1:
-            return self.list_of_nodes_val[int(self.lenght/2)]
-        else: return ( self.list_of_nodes_val[int(self.lenght/2) -1] + self.list_of_nodes_val[int(self.lenght/2) + 1] ) / 2 
-              
+        return mean(self.nodes_value)
+    
+    def median(self):
+        return median(self.nodes_value)
+
+
 def init_example_tree():
+    """
+    A function that creates a mapping of the data structure set in a task(tree).
+    Return: root of tree
+    """
+
     left_sub_tree = Node(name='lst', value=3, children=[
          Node(name='lst1', value=2),
          Node(name='lst2', value=5),
@@ -31,6 +57,6 @@ def init_example_tree():
      ]),
      ]),
      ])
-    return Node(name='root', value=5, children=[left_sub_tree, right_sub_tree])
+    sub_tree = [left_sub_tree, right_sub_tree]
+    return Node(name='root', value=5, children=sub_tree)
 
-root = init_example_tree()
